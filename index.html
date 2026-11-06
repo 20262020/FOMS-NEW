@@ -3,218 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FOMS Test</title>
+</head>
 
-  <title>FOMS Prototype</title>
+<body style="margin:0;font-family:Arial;background:#eaf7f3;">
 
-  <style>
-    :root {
-      --green-950: #073c38;
-      --green-900: #07564e;
-      --green-700: #08766a;
-      --green-500: #22a88e;
-      --green-100: #e5f5f1;
-      --gold: #d7a548;
+  <div style="
+    min-height:100vh;
+    display:grid;
+    place-items:center;
+    text-align:center;
+    color:#075f56;
+  ">
 
-      --background: #f4f8f7;
-      --surface: #ffffff;
-      --text: #183432;
-      --muted: #6b807e;
-      --border: #dce7e5;
+    <div>
+      <h1 style="font-size:48px;margin:0 0 12px;">
+        FOMS berhasil aktif
+      </h1>
 
-      --danger: #b42318;
-      --warning: #9a6200;
-      --blue: #2c61c9;
+      <p style="font-size:18px;">
+        GitHub Pages sudah membaca index.html
+      </p>
+    </div>
 
-      --shadow:
-        0 18px 45px rgba(17, 73, 67, 0.09),
-        0 3px 10px rgba(17, 73, 67, 0.05);
-    }
+  </div>
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family:
-        Inter,
-        "Segoe UI",
-        Arial,
-        sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(
-          circle at 85% 0,
-          rgba(34, 168, 142, 0.13),
-          transparent 27%
-        ),
-        var(--background);
-    }
-
-    button,
-    input,
-    select {
-      font: inherit;
-    }
-
-    button,
-    a {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    /* =========================
-       LOGIN
-    ========================== */
-
-    .login-screen {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(390px, 0.65fr);
-      background: #f8fbfa;
-      transition:
-        opacity 0.45s ease,
-        visibility 0.45s ease,
-        transform 0.5s ease;
-    }
-
-    .login-screen.hidden {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      transform: scale(1.015);
-    }
-
-    .login-visual {
-      position: relative;
-      min-width: 0;
-      overflow: hidden;
-      color: white;
-
-      background-image:
-        linear-gradient(
-          90deg,
-          rgba(3, 40, 37, 0.12),
-          rgba(3, 45, 41, 0.16) 55%,
-          rgba(3, 45, 41, 0.40)
-        ),
-        linear-gradient(
-          180deg,
-          transparent 46%,
-          rgba(2, 37, 34, 0.72)
-        ),
-        url("https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1800&q=90");
-
-      background-size: cover;
-      background-position: center;
-    }
-
-    .login-visual::before {
-      content: "";
-      position: absolute;
-      width: 460px;
-      height: 460px;
-      right: -180px;
-      top: -180px;
-      border: 1px solid rgba(255, 255, 255, 0.23);
-      border-radius: 50%;
-      box-shadow:
-        0 0 0 55px rgba(255, 255, 255, 0.035),
-        0 0 0 115px rgba(255, 255, 255, 0.018);
-    }
-
-    .login-brand {
-      position: absolute;
-      top: 34px;
-      left: 38px;
-      z-index: 3;
-
-      display: flex;
-      align-items: center;
-      gap: 12px;
-
-      font-size: 22px;
-      font-weight: 900;
-    }
-
-    .brand-mark {
-      width: 48px;
-      height: 48px;
-
-      display: grid;
-      place-items: center;
-
-      border: 1px solid rgba(255, 255, 255, 0.32);
-      border-radius: 15px;
-
-      background: rgba(255, 255, 255, 0.14);
-      backdrop-filter: blur(14px);
-
-      box-shadow: 0 16px 35px rgba(0, 25, 23, 0.20);
-    }
-
-    .login-chips {
-      position: absolute;
-      top: 36px;
-      right: 30px;
-      z-index: 3;
-
-      display: flex;
-      gap: 9px;
-    }
-
-    .glass-chip {
-      padding: 9px 12px;
-
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      border-radius: 999px;
-
-      background: rgba(1, 50, 46, 0.22);
-      backdrop-filter: blur(14px);
-
-      color: #effffb;
-      font-size: 10px;
-      font-weight: 850;
-      letter-spacing: 0.6px;
-    }
-
-    .login-copy {
-      position: absolute;
-      left: 42px;
-      right: 42px;
-      bottom: 44px;
-      z-index: 3;
-
-      max-width: 700px;
-    }
-
-    .eyebrow {
-      color: #b9f5e7;
-      font-size: 11px;
-      font-weight: 850;
-      letter-spacing: 2px;
-    }
-
-    .login-copy h1 {
-      max-width: 680px;
-      margin: 13px 0 12px;
-
-      font-size: clamp(36px, 4vw, 58px);
-      line-height: 1.02;
-      letter-spacing: -1.8px;
-
-      text-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
-    }
-
-    .login-copy p {
-      max-width: 620px;
-      margin: 0;
-
-      color: #e0f2ee;
-      font-size: 16px;
- 
+</body>
+</html>
